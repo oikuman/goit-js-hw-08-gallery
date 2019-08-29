@@ -47,12 +47,16 @@ items.forEach(item => {
 });
 
 const handleClick = e => {
+    
     e.preventDefault();
     const data = e.target.dataset.source;
-    refs.lightboxImage.setAttribute("src", data);
-    refs.lightboxImage.setAttribute("alt", e.target.alt);
-    //Для того чтобы открыть, добавь на div.lightbox CSS-класс is-open
+    const image = refs.lightboxImage.cloneNode(false);
+    image.setAttribute("src", data);
+    image.setAttribute("alt", e.target.alt);
+    refs.lightboxContent.innerHTML = "";
+    refs.lightboxContent.append(image);
     refs.divLightbox.classList.add("is-open");
+    
 };
 
 const closeHandler = () => {
